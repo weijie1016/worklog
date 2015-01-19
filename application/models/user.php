@@ -12,7 +12,7 @@ class User extends CI_Model{
 		return $query->result();
 	}
 	function getUserByUserId($userId){
-		$query=$this->db->get('users',$userId);
+		$query=$this->db->get_where('users',array('userid'=>$userId));
 		return $query->result();
 	}
 }
