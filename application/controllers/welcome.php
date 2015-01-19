@@ -21,6 +21,7 @@ class Welcome extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('url');
 		$this->load->model('user');
+		header("Content-type:text/html;charset=utf-8");
 	}
 	public function index()
 	{
@@ -49,7 +50,17 @@ class Welcome extends CI_Controller {
 		// $this->user->getUserByUserId();
 		// $this->load->view('userDetails');
 		$result=$this->user->getUserByUserId($this->uri->segment(3));
-		echo $result->username;
+		//var_dump($result);
+		//echo $result['username'];
+		foreach($result as $row){
+			echo $row->username;
+			echo '<br />';
+			echo '<br />';
+			echo $row->realname;
+		}
+		
+		echo base_url().'js/js.js';
+		
 	}
 	public function doLogin(){
 		$username=$this->input->post('username');
